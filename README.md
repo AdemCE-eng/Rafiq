@@ -24,14 +24,14 @@ Codex includes `$skill-installer`. Paste this into Codex:
 
 ```text
 $skill-installer Install Rafiq from:
-https://github.com/AdemCE-eng/rafiq/tree/main/skills/rafiq
+https://github.com/AdemCE-eng/Rafiq/tree/main/skills/rafiq
 ```
 
 Or ask in natural language:
 
 ~~~text
 Install the Rafiq skill from:
-https://github.com/AdemCE-eng/rafiq/tree/main/skills/rafiq
+https://github.com/AdemCE-eng/Rafiq/tree/main/skills/rafiq
 ~~~
 
 The installed skill is available on your next turn. If it does not appear, restart

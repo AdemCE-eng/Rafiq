@@ -2,7 +2,7 @@
 
 Learn how to learn.
 
-[github.com/AdemCE-eng/rafiq](https://github.com/AdemCE-eng/rafiq)
+[github.com/AdemCE-eng/Rafiq](https://github.com/AdemCE-eng/Rafiq)
 
 Rafiq is an adaptive learning companion. An Agent Skill is a folder of instructions
 that helps your AI follow a workflow. Start with Rafiq; no knowledge of the
@@ -14,7 +14,7 @@ Paste into Codex chat:
 
 ~~~text
 $skill-installer Install Rafiq from:
-https://github.com/AdemCE-eng/rafiq/tree/main/skills/rafiq
+https://github.com/AdemCE-eng/Rafiq/tree/main/skills/rafiq
 ~~~
 
 Try it on your next turn; restart Codex if discovery has not refreshed.
