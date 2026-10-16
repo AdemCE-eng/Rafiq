@@ -1,0 +1,27 @@
+# Personal learning data and local discovery copies
+config/*.local.md
+/learning-workspaces/
+.agents/
+.claude/
+/work/
+/REVIEW_BUNDLE.md
+
+# Python and test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Local configuration, secrets, editors, and system files
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+*.code-workspace
+*.log
+.DS_Store
+Thumbs.db
