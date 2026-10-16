@@ -33,3 +33,6 @@ does the learner solve a changed problem later without the solution visible?
 
 For revisions, rerun affected cases; retain the original result and explain why
 the change addresses the observed problem. Use [the result template](result-template.md).
+
+Rafiq discovery boundaries: [routing regressions](rafiq-routing.md).
+Archived results preserve the skill names and paths used during their original runs.

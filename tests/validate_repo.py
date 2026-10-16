@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-EXPECTED = {"tech-research", "learning-roadmap", "learning-coach", "learn-new-tech", "learning-companion"}
+EXPECTED = {"tech-research", "learning-roadmap", "learning-coach", "learn-new-tech", "rafiq"}
 
 
 def validate(root, expected=EXPECTED):
@@ -51,8 +51,8 @@ def validate(root, expected=EXPECTED):
         if len(text.splitlines()) > 160:
             errors.append(f"{name}: exceeds project's 160-line entrypoint budget")
 
-    template = root / "skills" / "learning-companion" / "assets" / "workspace-template"
-    if "learning-companion" in found:
+    template = root / "skills" / "rafiq" / "assets" / "workspace-template"
+    if "rafiq" in found:
         expected_templates = {"MISSION.md", "LEARNER.md", "CHECKPOINT.md"}
         actual = {p.name for p in template.glob("*") if p.is_file()}
         if actual != expected_templates:
@@ -65,6 +65,24 @@ def validate(root, expected=EXPECTED):
             if "Template only:" not in text or re.search(
                     r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}|[A-Za-z]:[\\/]|/Users/|/home/", text):
                 errors.append(f"{file.name}: template may contain personal data or lacks template marker")
+
+    # Historical transcripts retain original paths/hashes; current instructions must not.
+    old_skill = "learning-" + "companion"
+    old_repo = "modern-learning-" + "skills"
+    for file in root.rglob("*"):
+        if not file.is_file() or file.suffix not in {".md", ".py", ".json"}:
+            continue
+        rel = file.relative_to(root)
+        if (any(part in {".git", ".agents", ".claude", "work", ".venv",
+                        "__pycache__", "learning-workspaces"} for part in rel.parts)
+                or rel.as_posix().startswith("tests/behavioral/results/")
+                or rel.name == "REVIEW_BUNDLE.md"):
+            continue
+        content = file.read_text(encoding="utf-8")
+        normalized = content.replace(chr(92), "/")
+        if ("skills/" + old_skill in normalized
+                or "github.com/AdemCE-eng/" + old_repo in normalized):
+            errors.append(f"{rel}: obsolete public installation path")
 
     count = 0
     for file in sorted(root.rglob("*.md")):

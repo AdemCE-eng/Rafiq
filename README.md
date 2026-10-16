@@ -1,18 +1,20 @@
-# modern-learning-skills
+# Rafiq
+
+An adaptive learning companion that helps you learn new technologies and topics
+through goal-first learning, real practice, evidence-based progress, and gradually
+reduced AI scaffolding.
 
 **Good information ≠ good learning.**
 
-Five portable Agent Skills for students and developers learning with AI across
-one session or many. Turn a goal into the necessary research, a sensible path,
-and an interactive cycle of attempts, feedback and building.
+A polished answer is not evidence that you can apply it. Rafiq starts with your
+goal and current ability, chooses what matters now versus later, and adapts from
+your attempts. It can use concise chat, visual or interactive lessons, coding,
+building, debugging, and reference material when each helps the current objective.
 
-An AI can give you a polished answer while you learn very little. These skills
-change what the agent does: narrow the scope, let you attempt the work, diagnose
-the gap, offer a hint, and adapt from evidence of understanding.
-
-Good teaching also depends on what the learner gets to see, manipulate, attempt,
-build, and revisit. The companion chooses the medium to fit the next objective;
-it does not generate HTML for every topic.
+Your learning state stays in readable files you can inspect, edit, or delete.
+Rafiq records demonstrated evidence instead of vague ability labels, helps you
+resume later, and gradually returns planning, research, debugging, and verification
+to you. Its goal is to make you increasingly capable of learning without it.
 
 ## Quick Start - Codex
 
@@ -21,11 +23,18 @@ it does not generate HTML for every topic.
 Codex includes `$skill-installer`. Paste this into Codex:
 
 ```text
-$skill-installer Install the learning-companion skill from:
-https://github.com/AdemCE-eng/modern-learning-skills/tree/main/skills/learning-companion
+$skill-installer Install Rafiq from:
+https://github.com/AdemCE-eng/rafiq/tree/main/skills/rafiq
 ```
 
-Codex detects newly installed skills automatically. If it does not appear, restart
+Or ask in natural language:
+
+~~~text
+Install the Rafiq skill from:
+https://github.com/AdemCE-eng/rafiq/tree/main/skills/rafiq
+~~~
+
+The installed skill is available on your next turn. If it does not appear, restart
 Codex. This workflow follows the current [official Codex skills guidance](https://learn.chatgpt.com/docs/build-skills).
 
 ### 2. Start learning
@@ -33,7 +42,7 @@ Codex. This workflow follows the current [official Codex skills guidance](https:
 Paste this into Codex and replace the bracketed text:
 
 ```text
-I want you to be my long-term learning companion for [topic].
+I want Rafiq to help me learn [topic].
 
 My goal is:
 [goal]
@@ -54,7 +63,7 @@ interactive work, coding, or references, save learner-owned state, resume later,
 record demonstrated evidence instead of vague mastery labels, and gradually give
 you more responsibility.
 
-## How it works
+## How Rafiq works
 
 | Layer | What it does |
 | --- | --- |
@@ -63,7 +72,7 @@ you more responsibility.
 | Learning Experience | Chat / Visual / Interactive / Build / Reference, chosen for the current concept |
 | Independence | Teacher -> Coach -> Reviewer -> Verifier |
 
-The [experience decision rules](skills/learning-companion/references/learning-experience.md)
+The [experience decision rules](skills/rafiq/references/learning-experience.md)
 add a choice of medium to the companion; the four original session skills remain unchanged.
 
 ## Goal-first, not automatically course-first
@@ -81,21 +90,20 @@ structured curricula are often better for broad competence, cumulative
 foundations, exam preparation and sustained practice. Fundamentals-first is a
 supported preference, not a mistake to correct.
 
-## Other skills
+## Advanced / standalone skills
 
-Start with **learning-companion** for the complete student experience. The other
+Start with **Rafiq** for the complete student experience. The other
 skills are useful when you want one specific part of the workflow.
 
 | Skill | Use it for | Expected behavior |
 | --- | --- | --- |
-| [learning-companion](skills/learning-companion/SKILL.md) | Learning across sessions | Use learner-owned evidence and gradually transfer responsibility |
 | [tech-research](skills/tech-research/SKILL.md) | Orientation or a technology decision | A brief with claim-linked evidence, relevant terms, limits and a stopping rule |
 | [learning-roadmap](skills/learning-roadmap/SKILL.md) | Choosing what to learn | NOW / LATER / NOT NEEDED FOR THIS GOAL, realistic milestones and prerequisite decisions |
 | [learning-coach](skills/learning-coach/SKILL.md) | Interactive teaching and practice | One meaningful concept, a learner attempt, targeted feedback and adaptive hints |
 | [learn-new-tech](skills/learn-new-tech/SKILL.md) | One current journey | Choose only the activities needed; research, plan and coach directly |
 
 Install only the folder you need. Each skill works independently;
-`learning-companion` does not programmatically invoke the others.
+`rafiq` does not programmatically invoke the others.
 
 ## Manual installation
 
@@ -104,8 +112,8 @@ and assets, to a supported client location.
 
 | Client | Project location | Personal location | Explicit invocation |
 | --- | --- | --- | --- |
-| Codex | `.agents/skills/<name>/` | `~/.agents/skills/<name>/` | `$learning-companion` |
-| Claude Code | `.claude/skills/<name>/` | `~/.claude/skills/<name>/` | `/learning-companion` |
+| Codex | `.agents/skills/<name>/` | `~/.agents/skills/<name>/` | `$rafiq` |
+| Claude Code | `.claude/skills/<name>/` | `~/.claude/skills/<name>/` | `/rafiq` |
 
 Verified against [Codex skill documentation](https://learn.chatgpt.com/docs/build-skills)
 and [Claude Code documentation](https://code.claude.com/docs/en/skills) on
@@ -116,10 +124,10 @@ For example, from this repository root, install one skill into this project's
 Codex discovery folder with PowerShell:
 
 ```powershell
-$destination = Join-Path (Get-Location) '.agents/skills/learning-companion'
+$destination = Join-Path (Get-Location) '.agents/skills/rafiq'
 if (Test-Path -LiteralPath $destination) { throw 'Destination already exists; compare before updating.' }
 New-Item -ItemType Directory -Force -Path (Split-Path $destination) | Out-Null
-Copy-Item -LiteralPath './skills/learning-companion' -Destination $destination -Recurse
+Copy-Item -LiteralPath './skills/rafiq' -Destination $destination -Recurse
 ```
 
 For Claude Code, change `.agents` to `.claude`. For another project, use that
@@ -131,11 +139,11 @@ Open the client in the destination project. Confirm the skill appears in its ski
 selector; restart if discovery has not refreshed. Then invoke it explicitly:
 
 ```text
-$learning-companion I want to understand MCP by building one local tool. I know
+$rafiq I want to understand MCP by building one local tool. I know
 basic Python, prefer hints, and want my progress saved in this project.
 ```
 
-In Claude Code use `/learning-companion` instead. Natural-language selection can also
+In Claude Code use `/rafiq` instead. Natural-language selection can also
 work, depending on the client and available skill descriptions.
 
 Without a Skills-aware client, supply the contents of the relevant `SKILL.md`
@@ -149,7 +157,7 @@ change; the ability to choose sources, plan, verify and learn remains. The goal 
 to become better at learning without an AI tutor, while keeping help available.
 
 `learn-new-tech` optimizes the current journey without a persistent learner store.
-`learning-companion` uses a folder you own to continue a substantial mission.
+`rafiq` uses a folder you own to continue a substantial mission.
 It performs learning activities directly, without calling sibling skills.
 
 ```text
@@ -178,11 +186,11 @@ learning remain available.
 
 ### Start and resume
 
-Install `learning-companion` using the copy instructions above with that skill
+Install `rafiq` using the copy instructions above with that skill
 name. In Codex chat:
 
 ```text
-$learning-companion Initialize ./learning-workspaces/mcp. I want to build and
+$rafiq Initialize ./learning-workspaces/mcp. I want to build and
 explain one local MCP tool for my agent project. I know Python and APIs, have
 three hours a week, and prefer hints. Save meaningful learning state here.
 ```
@@ -190,7 +198,7 @@ three hours a week, and prefer hints. Save meaningful learning state here.
 Later:
 
 ```text
-$learning-companion Continue MCP using ./learning-workspaces/mcp. I have 30 minutes.
+$rafiq Continue MCP using ./learning-workspaces/mcp. I have 30 minutes.
 ```
 
 Paths are relative to your project, not the installed skill; use an absolute path
@@ -202,7 +210,7 @@ Without file access, supply state and save clearly labeled proposed updates your
 Start small: MISSION.md, CHECKPOINT.md, and LEARNER.md only when supplied context
 is useful. Evidence creates learning-records/; demonstrated terms and useful
 sources create GLOSSARY.md and RESOURCES.md later.
-[Templates and state rules](skills/learning-companion/references/workspace-state.md)
+[Templates and state rules](skills/rafiq/references/workspace-state.md)
 live inside the independently installable skill.
 
 Records distinguish demonstrated performance, reported experience and unknowns,

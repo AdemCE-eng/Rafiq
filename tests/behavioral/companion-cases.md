@@ -1,6 +1,6 @@
 # Long-term companion behavioral cases
 
-All state and learners below are fictional fixtures. Use only learning-companion
+All state and learners below are fictional fixtures. Use only rafiq
 and its bundled files, a separate scratch workspace per case, and an evaluator
 without this rubric. Follow [the evaluation protocol](README.md).
 Capture exact prompts, file reads/writes, before/after state and actual replies.

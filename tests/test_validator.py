@@ -34,20 +34,36 @@ class ValidatorTests(unittest.TestCase):
             encoding="utf-8")
         self.assertEqual(validate(self.root)[0], [])
 
-    def test_companion_installs_alone(self):
+    def test_rafiq_installs_alone(self):
         isolated = self.root / "standalone"
-        shutil.copytree(self.root / "skills" / "learning-companion",
-                        isolated / "skills" / "learning-companion")
-        self.assertEqual(validate(isolated, expected={"learning-companion"})[0], [])
+        shutil.copytree(self.root / "skills" / "rafiq",
+                        isolated / "skills" / "rafiq")
+        self.assertEqual(validate(isolated, expected={"rafiq"})[0], [])
+
+    def test_obsolete_install_path_rejected(self):
+        old = "skills/learning-" + "companion"
+        (self.root / "README.md").write_text("Copy " + old, encoding="utf-8")
+        self.assertTrue(any("obsolete public" in e for e in validate(self.root)[0]))
+
+    def test_obsolete_repository_url_rejected(self):
+        old = "https://github.com/AdemCE-eng/modern-learning-" + "skills"
+        (self.root / "README.md").write_text(old, encoding="utf-8")
+        self.assertTrue(any("obsolete public" in e for e in validate(self.root)[0]))
+
+    def test_historical_paths_allowed(self):
+        results = self.root / "tests/behavioral/results"
+        results.mkdir(parents=True)
+        (results / "past.md").write_text("skills/learning-" + "companion", encoding="utf-8")
+        self.assertEqual(validate(self.root)[0], [])
 
     def test_personal_detail_in_template_rejected(self):
-        template = self.root / "skills/learning-companion/assets/workspace-template/LEARNER.md"
+        template = self.root / "skills/rafiq/assets/workspace-template/LEARNER.md"
         template.write_text(template.read_text(encoding="utf-8") +
                             "\nContact: fictional@example.invalid\n", encoding="utf-8")
         self.assertTrue(any("personal data" in e for e in validate(self.root)[0]))
 
     def test_missing_template_rejected(self):
-        (self.root / "skills/learning-companion/assets/workspace-template/MISSION.md").unlink()
+        (self.root / "skills/rafiq/assets/workspace-template/MISSION.md").unlink()
         self.assertTrue(any("missing or unexpected" in e for e in validate(self.root)[0]))
 
     def test_unsupported_frontmatter_rejected(self):

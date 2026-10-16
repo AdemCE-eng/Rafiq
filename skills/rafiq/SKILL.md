@@ -1,8 +1,8 @@
 ---
-name: learning-companion
-description: "Continue learning across sessions using a learner-owned workspace, evidence records, and gradually reduced assistance. Use for a continuing learning mission or explicit learning-memory requests, not implementation-only tasks or one-off tutoring without persistence."
+name: rafiq
+description: "Support long-term adaptive learning of a technology or topic with learner-owned state, personalized explanations and practice, visual or interactive learning when useful, evidence-based progress, session resume, and growing independence. Use for continuing learning journeys or explicit learning-memory requests; not ordinary coding, implementation-only requests, or standalone factual questions."
 ---
-# Learning companion
+# Rafiq
 
 Help the learner become less dependent on your help. Use their concrete mission
 and evidence to choose the next useful challenge, not the next chapter.

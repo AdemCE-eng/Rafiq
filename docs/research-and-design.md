@@ -47,7 +47,7 @@ A fifth independent skill adds learner-owned Markdown state. The official
 specification and client docs above were rechecked: ordinary references and
 bundled template assets suffice. The reviewed four skill bundles remain unchanged.
 
-Templates live inside learning-companion/assets/workspace-template so a single
+Templates live inside rafiq/assets/workspace-template so a single
 copied folder works; no duplicate root template is needed. Two references separate
 workspace/evidence policy from responsibility-transfer decisions.
 

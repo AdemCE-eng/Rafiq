@@ -34,7 +34,7 @@ it or load it automatically. Explicitly attach/paste the preferences or name a
 readable path. Source links, ordinary textual handoffs, learning checkpoints and
 evaluation formats in this repository are not new Skill protocol fields.
 
-The learning-companion workspace is a project convention, not official Skill
+The Rafiq workspace is a project convention, not official Skill
 functionality. Persistence requires authorized read/write access to a learner-named
 folder. With no filesystem, supply state and save proposed updates yourself.
 No hidden memory, profile discovery, scheduler or sibling skill is assumed.

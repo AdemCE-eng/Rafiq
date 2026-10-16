@@ -35,5 +35,5 @@ omitting essential prerequisites. The agent should state those tradeoffs.
 An absent/unreadable preference file never blocks the workflow. These preferences
 are not saved automatically. Companion mode can preserve useful supplied preferences
 in an explicitly authorized workspace's LEARNER.md under the
-[workspace rules](../skills/learning-companion/references/workspace-state.md).
+[workspace rules](../skills/rafiq/references/workspace-state.md).
 Reuse across missions only when requested. Avoid publishing private learning records.

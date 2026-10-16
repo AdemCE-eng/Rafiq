@@ -1,132 +1,70 @@
-# Your first learning session
+# Rafiq
 
-An Agent Skill is a folder of instructions that helps an AI follow a workflow.
-Choose how much continuity you want:
+Learn how to learn.
 
-```text
-QUICK SESSION                       LONG-TERM COMPANION
-learn-new-tech                      learning-companion
-one current journey                 your workspace across sessions
-                                    mission -> evidence -> next session
+[github.com/AdemCE-eng/rafiq](https://github.com/AdemCE-eng/rafiq)
 
-Three focused options: tech-research | learning-roadmap | learning-coach
-```
+Rafiq is an adaptive learning companion. An Agent Skill is a folder of instructions
+that helps your AI follow a workflow. Start with Rafiq; no knowledge of the
+supporting skills is needed.
 
-All five skills work independently. There are no automatic calls between them.
+## Install in Codex
 
-## Four companion layers
+Paste into Codex chat:
 
-1. Learning engine: Research -> Roadmap -> Coach -> Build.
-2. Learning memory: Mission -> Evidence -> Records -> Resume.
-3. Learning experience: choose Chat / Visual / Interactive / Build / Reference.
-4. Independence: Teacher -> Coach -> Reviewer -> Verifier, by evidence rather than levels.
+~~~text
+$skill-installer Install Rafiq from:
+https://github.com/AdemCE-eng/rafiq/tree/main/skills/rafiq
+~~~
 
-Good information ≠ good learning. What the learner sees, manipulates, attempts,
-builds, and revisits matters too. The medium should fit the learning objective.
+Try it on your next turn; restart Codex if discovery has not refreshed.
 
-## Install your mode in Codex
+## Start a mission
 
-You need Codex and a local copy of this repository. In PowerShell, from the
-repository folder, run:
+~~~text
+I want Rafiq to help me learn MCP.
+My goal is to build and explain one local tool.
+I already know Python and APIs. I have 60 minutes today.
+I prefer hints and visual explanations when they help.
+Keep my learning state in ./learning-workspaces/mcp where I can inspect and edit it.
+Let's start.
+~~~
 
-```powershell
-$skillName = 'learn-new-tech' # Or 'learning-companion' for saved learning state
-$destination = Join-Path (Get-Location) ".agents/skills/$skillName"
-if (Test-Path -LiteralPath $destination) { throw 'Already installed; compare before updating.' }
-New-Item -ItemType Directory -Force -Path (Split-Path $destination) | Out-Null
-Copy-Item -LiteralPath "./skills/$skillName" -Destination $destination -Recurse
-```
+Later, say: "Rafiq, continue from ./learning-workspaces/mcp. I have 30 minutes."
 
-Open this project in Codex and check the skill selector; restart if needed.
-Copy the whole folder, including references and assets. For another project,
-use its `.agents/skills/` folder. [Codex guidance](https://learn.chatgpt.com/docs/build-skills).
+Rafiq chooses what matters now, invites an attempt, and adapts from evidence.
+It can switch between chat, visuals, and real practice. A clicked answer is not
+proof of learning. You can inspect, correct, or delete your Markdown state.
 
-## Try it in Codex chat, not PowerShell
+~~~text
+Rafiq: goal -> research -> small path -> practice/build -> evidence -> resume
+                          ^                                   |
+                          +---------- learn the gap <---------+
 
-Quick session:
+Advanced standalone options:
+tech-research -> learning-roadmap -> learning-coach
+learn-new-tech: one learning journey without persistent state
+~~~
 
-```text
-$learn-new-tech Teach me how to containerize my FastAPI API locally. I know Python and FastAPI, have 60 minutes, and want hints before a full solution.
-```
-
-Long-term companion:
-
-```text
-$learning-companion Initialize ./learning-workspaces/mcp. I want to build and explain one local MCP tool. I know Python and APIs and have three hours a week. Save meaningful learning state here.
-```
-
-Later:
-
-```text
-$learning-companion Continue MCP using ./learning-workspaces/mcp. I have 30 minutes.
-```
-
-The companion records evidence, not everything it explains. It starts with a
-small mission/checkpoint and adds files only when useful. Open, correct or delete
-your Markdown state whenever you want. Use a separate folder for a new mission.
-`learning-workspaces/` is ignored here; check other locations before publishing.
-No hidden memory or automatic reminders are required.
-
-## Demonstrate the MCP progression
-
-Use comparable goals and make the differences visible without promising outcomes:
-
-| Mode | What to look for |
-| --- | --- |
-| Ordinary AI: "Teach me MCP" | May give a polished generated mini-course; compare actual behavior |
-| learn-new-tech | Goal-aware scope, attempts and adaptive feedback for this session |
-| learning-companion | Readable records of demonstrated learning and a resume point |
-| Experience layer | A short responsibility-flow lesson when useful, followed by real Python |
-| Over time | Learner proposes sources, models, plans, and verification when evidence supports it |
-
-In a fresh workspace, try:
-
-```text
-$learning-companion Initialize ./learning-workspaces/mcp-demo. I want to understand
-MCP well enough to use it confidently in my AI-agent projects. I know Python,
-REST APIs, and tool calling. I prefer interactive and visual learning when it helps.
-```
-
-Look for a small mental-model artifact in `lessons/`, a shared stylesheet in
-`assets/`, and a checkpoint linking the pending learner action. Open the HTML in a
-normal browser. Predict who decides, communicates, and executes, then try a changed
-scenario. Bring your explanation back to the companion before building the Python
-function. A completion click alone should create no learning record.
-
-The folders are created only when useful. Later lessons should reuse appropriate
-assets; lookup material belongs in `reference/` only when future use warrants it.
-No CDN, framework, or package manager is required for an ordinary lesson. If you
-prefer text today, say so. Real coding should follow the conceptual preparation,
-not be replaced by a fake browser coding exercise.
-
-Use the [experience cases](tests/behavioral/experience-cases.md) and
-[local validation report](tests/behavioral/results/experience-2026-10-16.md)
-to separate observed behavior from untested teaching effectiveness. The purpose
-remains increasing the learner's ability to learn without AI.
+These are learning activities, not automatic calls between skills.
 
 ## Make it fit you
 
-No configuration is required. Say:
+No configuration needed. Tell Rafiq:
 
-- Research: "Use official docs and repositories, at most three sources; flag uncertainty."
+- Research: "Prefer official docs and papers when relevant; at most three sources."
 - Roadmap: "Fundamentals first, three initial topics, and show what can wait."
-- Coaching: "Hints first; check at milestones. Today I need a direct worked example."
+- Coaching: "Hints first; check at milestones. Today I need a worked example."
 
 For reusable preferences, adapt [the example](config/learner-preferences.example.md)
-and explicitly ask the agent to read it. Companion mode can keep supplied useful
-preferences in LEARNER.md. Your current request takes priority.
+and ask Rafiq to read your copy. Your current request takes priority.
 
-As evidence grows, you can choose sources and propose plans while the AI reviews
-them. Direct help stays available. The aim is to need less help over time.
+## Make it yours
 
-## Make your own version
+Use GitHub's **Fork** button, then clone your fork. Start with preferences; edit
+skills/rafiq/SKILL.md or its references for reusable behavior changes. Reinstall
+from your fork after changes. The four standalone skills remain independent.
 
-Once published, use GitHub's Fork button and clone your fork; for now customize
-this local copy without publishing. Start with preferences. Edit the relevant
-`SKILL.md` and references for reusable behavior changes. Each skill is independent:
-edits to the small skills do not automatically change either main mode.
-Re-copy changed folders into the client discovery location.
-
-Run `python tests/validate_repo.py` before sharing. Never publish personal history
-by accident. See [companion examples](examples/companion-sessions.md) and
-[contributing](CONTRIBUTING.md).
+Run python tests/validate_repo.py before sharing. Keep personal learning state
+private: this repository ignores learning-workspaces/, but check staged files.
+See the [README](README.md) for manual installation and client differences.
