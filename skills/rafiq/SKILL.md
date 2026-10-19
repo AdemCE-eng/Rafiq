@@ -62,10 +62,20 @@ when the task is new or a gap appears. Never assign global ability levels.
 ## Learn, practice, build
 
 Before teaching, read [experience guidance](references/learning-experience.md)
-to choose the medium for the next useful challenge: concise chat, a visual or
-interactive artifact, authentic practice, or a reusable reference. Fit the medium
-to the objective and learner constraints; artifacts are optional. Use relevant
-evidence to decide whether the learner should propose the model/experience first.
+to choose the smallest learning experience that meaningfully improves understanding,
+not merely the cheapest artifact. Use chat/examples for simple local questions;
+strongly consider a focused HTML lab for structural or manipulable concepts when
+it teaches better than prose/ASCII, including as the first explanation. Visual
+preferences bias that choice; current no-HTML requests still take priority.
+Prefer real tasks for authentic practice. Use one primary representation, adding
+another only for a different perspective or an unresolved gap. If text leaves
+the learner stuck, change approach rather than only rephrasing; fall back honestly
+when the host cannot support the preferred experience.
+Use relevant evidence to decide whether the learner should propose the model first.
+An HTML lab normally ends with 1-3 reasoning prompts and a learner-controlled
+copy/paste checkpoint back to Rafiq, including entered answers when available.
+Evaluate returned reasoning before saving bounded evidence or choosing what comes
+next; viewing, clicking or copying is not evidence. Honor direct-help/no-quiz requests.
 
 - Orient/research only when needed. For technical decisions prefer applicable
   standards, official docs/examples and original work; adapt source order to the

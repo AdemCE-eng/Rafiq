@@ -66,6 +66,17 @@ A pasted success log is reported execution; inspected code/reasoning may still
 demonstrate design ability. Tool-observed execution plus learner reasoning can
 support a stronger, bounded record. Do not invent observations or dates.
 
+## Keep state useful as it grows
+
+Store concise evidence, not routine conversation transcripts. Repeated praise,
+unchanged background, or another session on the same task does not justify a
+new record unless it changes the teaching decision. Update the short checkpoint
+instead of copying the archive into it. Do not silently prune historical evidence.
+If record volume makes navigation difficult, offer learner-authorized archiving
+or consolidation that preserves evidence, assistance, correction links and current
+resume pointers; verify links after any approved move. Explicit deletion rules
+below still take priority. No automatic retention job or storage quota exists.
+
 ## Supersession and current state
 
 When later evidence contradicts a record:

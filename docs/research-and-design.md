@@ -85,3 +85,11 @@ native client loading and delayed retention.
 The initial development process is research → design → implementation → evaluation
 and revision → finished documentation. The teaching process itself does not require
 every stage on every request.
+
+## Beginner and portability review (2026-10-19)
+
+The five independent entrypoints remain. Documentation now separates first use,
+installation, architecture, and presentation guidance. A small workspace rule
+clarifies sparse evidence records and learner-authorized archive maintenance;
+no automatic retention engine was added. See [review findings](FINAL_REVIEW.md),
+[architecture](HOW_RAFIQ_WORKS.md), and [current portability checks](portability.md).

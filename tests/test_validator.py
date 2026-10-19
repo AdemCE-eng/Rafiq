@@ -56,6 +56,23 @@ class ValidatorTests(unittest.TestCase):
         (results / "past.md").write_text("skills/learning-" + "companion", encoding="utf-8")
         self.assertEqual(validate(self.root)[0], [])
 
+    def test_each_skill_in_both_client_layouts(self):
+        # Packaging test only: no native client invocation is implied.
+        for client in (".agents", ".claude"):
+            for source in sorted((ROOT / "skills").iterdir()):
+                if not source.is_dir():
+                    continue
+                with self.subTest(client=client, skill=source.name):
+                    project = self.root / ("install-" + client[1:] + "-" + source.name)
+                    destination = project / client / "skills" / source.name
+                    shutil.copytree(source, destination)
+                    source_files = {p.relative_to(source): p.read_bytes()
+                                    for p in source.rglob("*") if p.is_file()}
+                    installed_files = {p.relative_to(destination): p.read_bytes()
+                                       for p in destination.rglob("*") if p.is_file()}
+                    self.assertEqual(source_files, installed_files)
+                    self.assertEqual(validate(project / client, expected={source.name})[0], [])
+
     def test_personal_detail_in_template_rejected(self):
         template = self.root / "skills/rafiq/assets/workspace-template/LEARNER.md"
         template.write_text(template.read_text(encoding="utf-8") +

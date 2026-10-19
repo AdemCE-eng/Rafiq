@@ -1,317 +1,222 @@
 # Rafiq
 
-An adaptive learning companion that helps you learn new technologies and topics
-through goal-first learning, real practice, evidence-based progress, and gradually
-reduced AI scaffolding.
+A learning companion that helps you understand, practice, and gradually learn more independently.
 
-**Good information ≠ good learning.**
+## What is Rafiq?
 
-A polished answer is not evidence that you can apply it. Rafiq starts with your
-goal and current ability, chooses what matters now versus later, and adapts from
-your attempts. It can use concise chat, visual or interactive lessons, coding,
-building, debugging, and reference material when each helps the current objective.
+Rafiq starts with your goal and what you already know. It explains a useful idea,
+invites you to try, gives feedback, and chooses the next step from your response.
 
-Your learning state stays in readable files you can inspect, edit, or delete.
-Rafiq records demonstrated evidence instead of vague ability labels, helps you
-resume later, and gradually returns planning, research, debugging, and verification
-to you. Its goal is to make you increasingly capable of learning without it.
+**Good information ≠ good learning.** Reading an excellent answer is different
+from explaining or applying the idea yourself.
 
-## Quick Start - Codex
+Rafiq is an **Agent Skill**: a folder of instructions and supporting files that
+a compatible AI assistant reads. You use it inside Codex or Claude Code; it is
+not a separate app or a new AI model. You do not need to understand its files to start.
 
-### 1. Install the skill
+## What makes it different?
 
-Codex includes `$skill-installer`. Paste this into Codex:
+- Start from a goal, rather than automatically assigning a whole course.
+- Use your existing knowledge and separate what matters now from what can wait.
+- Offer hints and practice before solving the whole task; give a direct answer when requested.
+- Change the explanation or medium when you are stuck; use visuals only when useful.
+- Save useful progress in files you own, when you request it and file access is available.
+- Gradually let you choose sources, plan, test ideas, and verify answers yourself.
 
-```text
-$skill-installer Install Rafiq from:
-https://github.com/AdemCE-eng/Rafiq/tree/main/skills/rafiq
-```
+Courses and books still matter. Broad subjects, exams, and missing foundations
+may need structured study. A small project is not always the best starting point.
 
-Or ask in natural language:
+## Quick Start
+
+You need access to one supported host below. Its account, installation, tools,
+and permissions are separate from Rafiq. Start with **only Rafiq**; the other
+four skills are optional.
+
+### Codex
+
+Open Codex in the project where you want to learn. Paste into **Codex chat**,
+not your terminal:
 
 ~~~text
-Install the Rafiq skill from:
+$skill-installer Install Rafiq from:
 https://github.com/AdemCE-eng/Rafiq/tree/main/skills/rafiq
 ~~~
 
-The installed skill is available on your next turn. If it does not appear, restart
-Codex. This workflow follows the current [official Codex skills guidance](https://learn.chatgpt.com/docs/build-skills).
+Then select Rafiq using the skill picker or type `$rafiq` before your learning
+request. If it is not visible, restart Codex.
+[Official Codex instructions](https://learn.chatgpt.com/docs/build-skills).
 
-### 2. Start learning
+Prefer a local installation or need this checkout's unpublished edits?
+Use the [manual installation steps](docs/INSTALLATION.md).
 
-Paste this into Codex and replace the bracketed text:
+### Claude / Claude Code
 
-```text
-I want Rafiq to help me learn [topic].
+For **Claude Code**, download this repository from
+[GitHub](https://github.com/AdemCE-eng/Rafiq) using **Code → Download ZIP** and
+extract it. Open a folder for your learning project.
 
-My goal is:
-[goal]
+1. Inside that project, create `.claude/skills/`.
+2. Copy the **whole** `skills/rafiq` folder from the extracted repository into it.
+3. Confirm the result is `.claude/skills/rafiq/SKILL.md`, with `references/` and
+   `assets/` beside that file.
+4. Open Claude Code in the learning project and type `/rafiq` followed by your request.
 
-I already know:
-[background]
+These are the documented Claude Code folder and invocation conventions.
+[Official Claude Code instructions](https://code.claude.com/docs/en/skills).
 
-I prefer:
-[learning preferences]
+Using **Claude in the browser** instead? It has a separate custom-skill ZIP upload
+route. Follow [installation and memory limits](docs/INSTALLATION.md); it does not
+automatically gain access to your computer's learning folder.
 
-Keep my learning state in this project where I can inspect and edit it.
+Compatibility here means the format and installation layout match current official
+documentation. It does **not** mean identical model behavior or a completed live
+Claude test. See [verification details](docs/portability.md).
 
-Let's start.
-```
+## Start Learning
 
-The companion can adapt to what you already know, choose chat, visual lessons,
-interactive work, coding, or references, save learner-owned state, resume later,
-record demonstrated evidence instead of vague mastery labels, and gradually give
-you more responsibility.
+After selecting Rafiq, use your own words or fill this in:
 
-## How Rafiq works
+~~~text
+I want to learn [topic].
+Why: [reason]
+I already know: [background, or "I'm new to this"]
+By the end, I want to: [observable goal]
+I have [time] and prefer [how you like to learn].
+~~~
 
-| Layer | What it does |
+For example:
+
+~~~text
+I want to learn Digital Twins.
+Why: I want to know whether they could help monitor energy usage in a university building.
+I already know basic IoT concepts.
+By the end, I want to decide whether a Digital Twin is appropriate for this use case.
+I have 30 minutes. Explain unfamiliar terms and let me try a small example.
+~~~
+
+For saved progress, add:
+
+~~~text
+Keep useful learning state in ./learning-workspaces/digital-twins.
+Explain what you save so I can inspect and edit it.
+~~~
+
+If you only want a conversation, say "No saved state today." A vague interest
+should not create a pile of files. Rafiq may ask for a clearer goal or location.
+
+## What happens next?
+
+~~~text
+Goal → current knowledge → learn → try → feedback or hint → retry
+                                                        ↓
+                                     evidence of understanding → next step
+~~~
+
+Rafiq chooses the activities you need, rather than running every stage every time.
+It might ask one focused question, explain one distinction, or invite a prediction.
+It should then wait for your answer.
+
+If you are stuck, say what feels unclear. Rafiq can simplify the task, use another
+example, change medium, or teach a missing prerequisite. If you need a full worked
+answer, ask for it. Seeing that answer does not count as independently solving it.
+
+## Memory / Learning Progress
+
+Rafiq's learning memory is **ordinary files in the folder you choose**.
+It is a project convention, not a built-in memory database.
+
+| File in your learning folder | What it holds |
 | --- | --- |
-| Learning Engine | Research -> Roadmap -> Coach -> Build |
-| Learning Memory | Mission -> Evidence -> Records -> Resume |
-| Learning Experience | Chat / Visual / Interactive / Build / Reference, chosen for the current concept |
-| Independence | Teacher -> Coach -> Reviewer -> Verifier |
+| MISSION.md | Why you are learning, your goal, constraints, and what is out of scope |
+| CHECKPOINT.md | Where to resume, the current gap, evidence links, and your next action |
+| LEARNER.md, when useful | Relevant background you report and preferences you supply |
+| learning-records/, when justified | Short records of specific attempts, reasoning, help used, and implications |
+| GLOSSARY.md / RESOURCES.md, when justified | Demonstrated meanings / useful sources with trust and freshness context |
 
-The [experience decision rules](skills/rafiq/references/learning-experience.md)
-add a choice of medium to the companion; the four original session skills remain unchanged.
+The first two files may be enough to start. Optional lessons and references are
+teaching material, not proof that you learned them. A click, confidence statement,
+or explanation you only read must not become a mastery record.
 
-## Goal-first, not automatically course-first
+Open these files in any text editor. Correct them yourself or ask Rafiq to correct
+a specific claim. To reset, delete the chosen learning folder or ask Rafiq to
+remove that exact folder after confirming its location. Start the next session
+with "Start fresh; do not reconstruct my deleted state."
 
-Goal → assess relevant knowledge → learn necessary prerequisites → research when
-needed → practice and build → detect gaps → learn those gaps → continue.
+To resume in a new chat, select Rafiq and say:
 
-This is a decision loop, not a mandatory pipeline. Already know the architecture
-and need one feature? Start with the feature. Unsure whether a technology fits?
-Investigate before implementing.
+~~~text
+Continue using ./learning-workspaces/digital-twins. I have 20 minutes.
+~~~
 
-**The goal is not to avoid courses.** It is to avoid automatically treating a
-complete course as the only way to learn every technology. Courses, books and
-structured curricula are often better for broad competence, cumulative
-foundations, exam preparation and sustained practice. Fundamentals-first is a
-supported preference, not a mistake to correct.
+There is no automatic cross-chat folder search. Without file access, supply the
+state and save clearly labeled proposed updates yourself.
 
-## Advanced / standalone skills
+Rafiq does not need a full conversation transcript, personality profile, credentials,
+or unrelated personal history. Files may nevertheless contain personal information.
+The host processes prompts and files under its own policies; local files do not
+mean an offline or private model. Deleting them does not erase chat logs, backups,
+cloud sync, or Git history. Prefer a private folder. This repository ignores
+`learning-workspaces/`; other projects need their own protection.
 
-Start with **Rafiq** for the complete student experience. The other
-skills are useful when you want one specific part of the workflow.
-
-| Skill | Use it for | Expected behavior |
-| --- | --- | --- |
-| [tech-research](skills/tech-research/SKILL.md) | Orientation or a technology decision | A brief with claim-linked evidence, relevant terms, limits and a stopping rule |
-| [learning-roadmap](skills/learning-roadmap/SKILL.md) | Choosing what to learn | NOW / LATER / NOT NEEDED FOR THIS GOAL, realistic milestones and prerequisite decisions |
-| [learning-coach](skills/learning-coach/SKILL.md) | Interactive teaching and practice | One meaningful concept, a learner attempt, targeted feedback and adaptive hints |
-| [learn-new-tech](skills/learn-new-tech/SKILL.md) | One current journey | Choose only the activities needed; research, plan and coach directly |
-
-Install only the folder you need. Each skill works independently;
-`rafiq` does not programmatically invoke the others.
-
-## Manual installation
-
-Advanced users can copy a whole individual skill folder, including its references
-and assets, to a supported client location.
-
-| Client | Project location | Personal location | Explicit invocation |
-| --- | --- | --- | --- |
-| Codex | `.agents/skills/<name>/` | `~/.agents/skills/<name>/` | `$rafiq` |
-| Claude Code | `.claude/skills/<name>/` | `~/.claude/skills/<name>/` | `/rafiq` |
-
-Verified against [Codex skill documentation](https://learn.chatgpt.com/docs/build-skills)
-and [Claude Code documentation](https://code.claude.com/docs/en/skills) on
-2026-10-16. These are local CLI/project instructions; web/API products may require
-different packaging. See [portability notes](docs/portability.md).
-
-For example, from this repository root, install one skill into this project's
-Codex discovery folder with PowerShell:
-
-```powershell
-$destination = Join-Path (Get-Location) '.agents/skills/rafiq'
-if (Test-Path -LiteralPath $destination) { throw 'Destination already exists; compare before updating.' }
-New-Item -ItemType Directory -Force -Path (Split-Path $destination) | Out-Null
-Copy-Item -LiteralPath './skills/rafiq' -Destination $destination -Recurse
-```
-
-For Claude Code, change `.agents` to `.claude`. For another project, use that
-project's absolute destination. Repeat for other skill names if wanted. Copies
-do not update automatically: compare and replace deliberately after source edits.
-These local installation copies are ignored by this repository's Git configuration.
-
-Open the client in the destination project. Confirm the skill appears in its skill
-selector; restart if discovery has not refreshed. Then invoke it explicitly:
-
-```text
-$rafiq I want to understand MCP by building one local tool. I know
-basic Python, prefer hints, and want my progress saved in this project.
-```
-
-In Claude Code use `/rafiq` instead. Natural-language selection can also
-work, depending on the client and available skill descriptions.
-
-Without a Skills-aware client, supply the contents of the relevant `SKILL.md`
-and any requested reference files as ordinary instructions. This is a manual
-fallback, not a native installation or a guarantee of equivalent behavior.
-
-## A companion that helps less over time
-
-The best learning assistant should need to help you less over time. Technologies
-change; the ability to choose sources, plan, verify and learn remains. The goal is
-to become better at learning without an AI tutor, while keeping help available.
-
-`learn-new-tech` optimizes the current journey without a persistent learner store.
-`rafiq` uses a folder you own to continue a substantial mission.
-It performs learning activities directly, without calling sibling skills.
-
-```text
-                  Learner state
-                       |
-                       v
-                     Mission
-                       |
-                       v
-Research -> Roadmap -> Experience -> Build
-    ^                      |
-    |                      v
-    +--------- gaps <- Evidence
-                       |
-                       v
-                 Learning records
-                       |
-                       v
-                  Next session
-```
-
-Teacher -> coach -> reviewer -> verifier -> optional companion is a direction,
-not fixed levels. Good source choices can justify letting you propose sources;
-they do not prove independent debugging ability. Direct help and fundamentals-first
-learning remain available.
-
-### Start and resume
-
-Install `rafiq` using the copy instructions above with that skill
-name. In Codex chat:
-
-```text
-$rafiq Initialize ./learning-workspaces/mcp. I want to build and
-explain one local MCP tool for my agent project. I know Python and APIs, have
-three hours a week, and prefer hints. Save meaningful learning state here.
-```
-
-Later:
-
-```text
-$rafiq Continue MCP using ./learning-workspaces/mcp. I have 30 minutes.
-```
-
-Paths are relative to your project, not the installed skill; use an absolute path
-when ambiguous. No workspace yet? Clarify the mission and location first.
-Without file access, supply state and save clearly labeled proposed updates yourself.
-
-### Your learning files
-
-Start small: MISSION.md, CHECKPOINT.md, and LEARNER.md only when supplied context
-is useful. Evidence creates learning-records/; demonstrated terms and useful
-sources create GLOSSARY.md and RESOURCES.md later.
-[Templates and state rules](skills/rafiq/references/workspace-state.md)
-live inside the independently installable skill.
-
-Records distinguish demonstrated performance, reported experience and unknowns,
-including assistance used. Coverage is not learning: hearing an explanation
-does not earn a mastery record. Later evidence can supersede earlier conclusions.
-CHECKPOINT is a short resume point, not a duplicate of the whole archive.
-
-When a concept benefits from a visual flow or immediate feedback, the companion
-may create `lessons/0001-short-topic.html` with shared files in `assets/`. Later
-lessons reuse appropriate components. Compressed lookup material goes in
-`reference/` only when useful; the existing glossary remains canonical. None of
-these folders is required at initialization. Ordinary lessons use local HTML,
-CSS, and vanilla JavaScript, without a build step or mandatory network access.
-Keyboard controls and explanatory feedback matter more than decorative polish.
-Opening or completing a lesson is not automatically learning evidence.
-
-For example, MCP responsibility boundaries may benefit from a short interactive
-flow and a changed scenario. Implementing `search_notes()` then belongs in real
-Python. A tiny `strip()` explanation usually needs only chat/code. Say "No HTML
-today" or "Let me draw the model first" to steer the experience.
-
-Open the Markdown files in any editor. Ask the companion to show what it knows,
-correct a claim, or remove state. You can edit or delete the files yourself.
-Explicit deletion overrides preserving history; removed facts must not be secretly
-restored. Local deletion does not erase host chat logs, backups or published Git history.
-
-Use one folder per substantial mission, such as MCP and Kubernetes. Keep old
-folders when pausing; reuse only explicitly supplied/authorized stable preferences.
-Review targets are suggestions for your return, not scheduled reminders.
-Nothing runs between sessions.
-
-Use a private location for personal state. This repository ignores
-`learning-workspaces/`; custom paths need their own protection. Gitignore does
-not untrack previously committed files. Inspect staged changes before publishing
-a fork so you do not expose personal learning history.
-
-See [five fictional companion sessions](examples/companion-sessions.md) and the
-[workshop quickstart](WORKSHOP_QUICKSTART.md).
-
-## Customize how you learn
-
-No configuration is required. Say:
-
-> I learn better through projects and don't want long videos.
-
-Or:
-
-> When researching AI topics, prioritize papers and official repositories.
-> Give me a fundamentals-first explanation and assess me at milestones.
-
-For reusable preferences, adapt [the Markdown example](config/learner-preferences.example.md)
-and explicitly ask the agent to read your copy. See [the convention](config/README.md).
-There is no YAML parser, automatic config discovery, schema extension, or hidden
-memory. Latest explicit session preferences override a supplied preference file.
+[State schema and rules](skills/rafiq/references/workspace-state.md).
 
 ## Examples
 
-- [MCP in 60 minutes](examples/learn-mcp.md): one local tool, a tiny path and an actual attempt.
-- [Docker tonight](examples/learn-docker.md): containerize a stateless FastAPI API; defer orchestration.
-- [WebGPU fit assessment](examples/learn-webgpu.md): orient and investigate before writing shaders.
+All examples are authored illustrations, not measured learning outcomes.
 
-Examples are authored illustrations, not execution logs or proof of learning.
-They avoid pinning an SDK implementation that will silently become stale.
+- [Technical beginner: Digital Twins](examples/learn-digital-twins.md): decide what to investigate, then change medium when a distinction remains confusing.
+- [Academic study: fractions](examples/learn-fractions.md): receive a hint, attempt the reasoning, and explain a changed example.
+- [Practical skill: a short presentation](examples/learn-presentation.md): draft, get feedback, revise, and distinguish a written draft from observed delivery.
 
-## Fork and contribute
+Developer examples remain available:
+[MCP](examples/learn-mcp.md), [Docker](examples/learn-docker.md),
+[WebGPU](examples/learn-webgpu.md), and
+[continuing sessions](examples/companion-sessions.md).
 
-Edit the relevant skill's decision rules and optional references. Keep each skill
-independently installable; avoid links to sibling skills or repository-only config
-files from inside a skill. Change the preference example for personal style;
-change a skill when you want a reusable behavioral rule.
+## How Rafiq Works
 
-Run the local structural check with Python 3.10+ (standard library only):
+The host selects a skill from its name and description, then reads its instructions
+and relevant supporting files. Rafiq performs research, planning, and coaching
+itself. It **does not call the other skills**.
 
-```text
+| Skill | Use it for |
+| --- | --- |
+| [rafiq](skills/rafiq/SKILL.md) | A continuing learning mission with optional learner-owned state |
+| [tech-research](skills/tech-research/SKILL.md) | A concise technology research or suitability brief |
+| [learning-roadmap](skills/learning-roadmap/SKILL.md) | A sensible path with NOW, LATER, and excluded topics |
+| [learning-coach](skills/learning-coach/SKILL.md) | A focused teaching and practice interaction |
+| [learn-new-tech](skills/learn-new-tech/SKILL.md) | A technology-learning journey without an automatic persistent workspace |
+
+Each installs independently. The overlap keeps standalone installation working;
+there is no shared runtime or automatic state transfer.
+
+Read [how Rafiq works](docs/HOW_RAFIQ_WORKS.md) for responsibilities, a diagram,
+and state flow. Presenting it? Use the [presenter guide](docs/PRESENTER_GUIDE.md)
+or the [workshop quickstart](WORKSHOP_QUICKSTART.md).
+
+## Customize and contribute
+
+Say "Fundamentals first," "Use primary sources," "No HTML today," or "Check only
+at milestones." No configuration is required. For reusable preferences, adapt
+[the example](config/learner-preferences.example.md) and explicitly ask Rafiq to
+read your copy. [Preference convention](config/README.md).
+
+Fork the repository and edit the canonical skill or its references for reusable
+behavior changes. Updating this checkout does not update an installed copy:
+compare and deliberately reinstall it. Avoid keeping competing copies of one skill.
+
+With Python 3.10+, run:
+
+~~~text
 python tests/validate_repo.py
-```
+python -m unittest discover -s tests -p "test_*.py"
+~~~
 
-Then run [behavioral scenarios](tests/behavioral/cases.md) in fresh chats. Compare
-actual learner interactions, not matching headings or keywords. Read
-[CONTRIBUTING.md](CONTRIBUTING.md) for the review process and
-[the initial evaluation report](tests/behavioral/results/2026-10-16.md) for what
-has and has not been tested.
+Then exercise relevant [behavioral cases](tests/behavioral/README.md) in the target
+client. Structural checks do not prove tutoring quality, native selection, or
+long-term retention. See [review and validation](docs/FINAL_REVIEW.md),
+[contribution guidance](CONTRIBUTING.md), and [research history](docs/research-and-design.md).
 
-## Design and limits
-
-- Portable YAML frontmatter contains only name and description. Supporting
-  Markdown stays inside each skill; tools and cross-skill calls are not assumed.
-- UNKNOWN knowledge is not the same as NOT NEEDED YET.
-- Hints are the default, but direct answers and complete demonstrations remain
-  available when requested.
-- Browsing and code execution depend on the host. Without evidence, technical
-  guidance must be labeled provisional; the skills cannot make a model infallible.
-- Time estimates are planning aids, not mastery guarantees. Real learning needs
-  learner effort and delayed transfer checks.
-- No account system or remote learner database is included. Companion mode writes
-  learner-authorized readable local state; the host has its own data handling.
-  The session skills do not silently create that state.
-- Local evaluations do not certify every model, client or native installation.
-  Structural checks do not measure pedagogy or real long-term retention.
-  See [companion evaluation](tests/behavioral/results/companion-2026-10-16.md).
-
-See [research and design decisions](docs/research-and-design.md) and
-[client differences](docs/portability.md). Original repository content is
-[MIT licensed](LICENSE). External references keep their own licenses.
+Rafiq cannot guarantee factual correctness, learning outcomes, tool availability,
+or persistent storage in every host. No scheduler, background activity, proprietary
+model, or remote learner database is included. Original content is [MIT licensed](LICENSE).

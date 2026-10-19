@@ -1,45 +1,78 @@
-# Portability and client boundaries
+# Portability and verification boundaries
 
-Checked 2026-10-16 against the [format specification](https://agentskills.io/specification),
-[OpenAI documentation](https://learn.chatgpt.com/docs/build-skills), and
-[Claude Code documentation](https://code.claude.com/docs/en/skills).
+Checked 2026-10-19. One canonical implementation under skills/; installation copies
+and ZIPs are packaging outputs, not separately maintained instructions.
 
-| Concern | Portable core | Codex | Claude Code |
+## Official sources
+
+- [Agent Skills specification](https://agentskills.io/specification): required
+  name/description, directory format, optional resources, progressive disclosure.
+- [OpenAI skills documentation](https://learn.chatgpt.com/docs/build-skills):
+  local discovery, explicit/implicit selection, installer, optional metadata.
+- [Claude Code skills documentation](https://code.claude.com/docs/en/skills):
+  skill folders, frontmatter, invocation, nested project discovery and extensions.
+- [Claude custom upload](https://support.claude.com/en/articles/12512180-use-skills-in-claude):
+  account upload requirements and UI; separate from local filesystem installation.
+
+## Shared format and differences
+
+| Concern | Rafiq / shared core | Codex | Claude Code |
 | --- | --- | --- | --- |
-| Definition | Folder with SKILL.md | Supported | Supported |
-| Discovery metadata | name and description | Used for selection | Used for selection |
-| Supporting files | Relative references/resources | Host reads when needed | Host reads when needed |
-| Local project discovery | Host-specific | .agents/skills | .claude/skills |
-| Personal local discovery | Host-specific | ~/.agents/skills | ~/.claude/skills |
-| Explicit use | Host-specific | $skill-name | /skill-name |
-| Extra controls | Not needed here | Optional agents/openai.yaml | Frontmatter extensions such as context: fork and disable-model-invocation |
-| Tools/network | Not supplied by a Markdown skill | Host capabilities and policy | Host capabilities and policy |
+| Entrypoint | Folder containing SKILL.md | name and description for discovery | Current docs permit omitted fields; Rafiq supplies both |
+| Portable metadata | Specification requires name and description; matching lowercase folder name | Supported | Supported; no additional field needed here |
+| Resources | Relative links inside each bundle; no sibling dependency | Read as needed | Read as needed |
+| Project path | Installation detail | .agents/skills/rafiq/ | .claude/skills/rafiq/ |
+| Personal manual path | Installation detail | ~/.agents/skills/rafiq/ | ~/.claude/skills/rafiq/ |
+| Explicit selection | Host-specific | $rafiq | /rafiq |
+| Optional extensions | Not used by Rafiq | agents/openai.yaml | context: fork, allowed-tools, invocation controls and argument substitutions |
+| Tools and persistence | Not granted by SKILL.md | Host tools/permissions | Host tools/permissions |
 
-Claude Code has a Skill tool and subagent-related extensions; they do not establish
-a portable cross-skill RPC contract. Codex metadata and Claude context/argument
-features are intentionally absent from these skills. 'Orchestrator' here means
-instructional routing within one skill, not an executable multi-agent scheduler.
+No platform-specific adaptation file is required for these instructions.
+OpenAI recommends plugins for broader distribution; this repository retains
+documented local skill installation without introducing a plugin runtime.
 
-OpenAI's current docs recommend plugins for broader distribution. This repository
-deliberately remains a locally installable source toolkit for review; a plugin can
-be added later as a separate, client-tested packaging layer. It has no marketplace
-registration or remote installation requirement.
+## Discovery is not delegation
 
-The table describes local Codex and Claude Code. Do not assume local personal
-folders sync to web products, cloud sessions, Cowork, or API containers. Consult
-the relevant product's current documentation before packaging for those targets.
+Codex scans project skill locations from the working directory toward the repo
+root. Claude Code supports project and nested-project skill locations. These
+discovery mechanisms do not mean a skill directory is a portable child-agent
+system. Rafiq's references/ directory is supporting text, not nested skills.
 
-The config folder is entirely our convention. Neither client is expected to parse
-it or load it automatically. Explicitly attach/paste the preferences or name a
-readable path. Source links, ordinary textual handoffs, learning checkpoints and
-evaluation formats in this repository are not new Skill protocol fields.
+Clients may support invocation tools or subagents; Rafiq does not rely on them.
+Its research, planning, and coaching are activities within the selected skill.
+The four supporting skill folders remain optional, independent entrypoints.
+Explicit selection is useful when descriptions overlap.
 
-The Rafiq workspace is a project convention, not official Skill
-functionality. Persistence requires authorized read/write access to a learner-named
-folder. With no filesystem, supply state and save proposed updates yourself.
-No hidden memory, profile discovery, scheduler or sibling skill is assumed.
-Templates are bundled inside the skill. Official conventions were rechecked on
-2026-10-16; this design needs no client-specific extensions.
+## State and other product surfaces
 
-Native discovery and automatic trigger behavior must be tested separately from
-manual loading. Updating source folders does not update installed copies.
+A local workspace is a Rafiq convention. Neither installation path creates a
+learner database. State requires authorized files that remain available across
+sessions. A shared filesystem allows Codex and Claude Code to use the same
+learner-owned folder; read current edits and avoid concurrent overlapping writes.
+
+Claude browser uploads use the same bundle in a ZIP but do not establish access
+to a chosen local folder. Supply/download state explicitly when durable files
+are unavailable. See [installation](INSTALLATION.md) for the supported upload route.
+
+ChatGPT, Cowork, cloud runs, and API containers have their own packaging and
+storage arrangements. A local copy is not evidence it is installed on those
+surfaces. Rafiq includes no hosted service or plugin integration for them.
+
+Preferences in config/ are optional prose supplied by the user. No automatic
+config parser or shared state handoff is assumed. Host instruction priority,
+tool permissions, and data policies still apply.
+
+## What has actually been verified?
+
+- Current format and documented installation conventions: inspected against the sources above.
+- Local structure, complete resources, and independent installation layouts: checked by repository tests.
+- Previous public Codex installer download: recorded in the earlier release work;
+  it verifies packaging, not tutoring quality.
+- Claude Code runtime: NOT TESTED here; no Claude executable is installed.
+- Claude account upload, account synchronization, and persistence: NOT TESTED.
+- Native routing, changed state behavior, and real delayed learning: require separate live tests.
+
+No claim of identical client behavior follows from a shared format. In Claude,
+tool access, working directory, approval settings, account skill collisions, and
+available browser/file capabilities may change what Rafiq can do. Use an explicit
+workspace and validate the actual installation before a presentation.

@@ -36,3 +36,5 @@ the change addresses the observed problem. Use [the result template](result-temp
 
 Rafiq discovery boundaries: [routing regressions](rafiq-routing.md).
 Archived results preserve the skill names and paths used during their original runs.
+
+Beginner and state-growth scenarios: [cases](beginner-cases.md).
